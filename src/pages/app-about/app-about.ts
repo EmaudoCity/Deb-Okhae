@@ -21,19 +21,46 @@ export class AppAbout extends LitElement {
       <app-header ?enableBack="${true}"></app-header>
 
       <main>
-        <h2>About Page</h2>
+        <h2>About CS50 Mail</h2>
 
         <sl-card>
-          <h2>Did you know?</h2>
+          <h2>CS50 Final Project</h2>
 
-          <p>PWAs have access to many useful APIs in modern browsers! These
-            APIs have enabled many new types of apps that can be built as PWAs, such as advanced graphics editing apps, games,
-            apps that use machine learning and more!
+          <p>
+            <strong>CS50 Mail</strong> is a Progressive Web Application (PWA) that simulates 
+            a modern email client. This project was created as a final project for 
+            <a href="https://cs50.harvard.edu/">Harvard's CS50</a> course.
           </p>
 
-          <p>Check out <a
-              href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/handle-files">these
-              docs</a> to learn more about the advanced features that you can use in your PWA</p>
+          <h3>Features</h3>
+          <ul>
+            <li><strong>Inbox</strong> - View and read incoming emails</li>
+            <li><strong>Compose</strong> - Write and send new emails</li>
+            <li><strong>Sent</strong> - View emails you've sent</li>
+            <li><strong>Archive</strong> - Archive emails for later</li>
+            <li><strong>Reply</strong> - Reply to received emails</li>
+            <li><strong>Read/Unread</strong> - Mark emails as read or unread</li>
+          </ul>
+
+          <h3>Technology Stack</h3>
+          <ul>
+            <li><a href="https://www.typescriptlang.org/">TypeScript</a> - Type-safe JavaScript</li>
+            <li><a href="https://lit.dev">Lit</a> - Web Components library</li>
+            <li><a href="https://shoelace.style/">Shoelace</a> - UI component library</li>
+            <li><a href="https://vitejs.dev/">Vite</a> - Build tool</li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps">PWA</a> - Progressive Web App</li>
+          </ul>
+
+          <h3>About CS50</h3>
+          <p>
+            CS50 is Harvard University's introduction to the intellectual enterprises 
+            of computer science and the art of programming. The course teaches students 
+            how to think algorithmically and solve problems efficiently.
+          </p>
+
+          <p>
+            This was CS50!
+          </p>
         </sl-card>
       </main>
     `;

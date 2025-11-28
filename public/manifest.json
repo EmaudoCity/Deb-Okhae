@@ -1,14 +1,14 @@
 {
   "id": "/",
   "scope": "/",
-  "name": "PWA Starter",
+  "name": "CS50 Mail",
   "display": "standalone",
   "start_url": "/",
-  "short_name": "starter",
-  "theme_color": "#E1477E",
-  "description": "This is a PWA Starter app",
+  "short_name": "CS50 Mail",
+  "theme_color": "#4F46E5",
+  "description": "CS50 Final Project - A modern email application built with Lit and Shoelace",
   "orientation": "any",
-  "background_color": "#E1477E",
+  "background_color": "#4F46E5",
   "related_applications": [],
   "prefer_related_applications": false,
   "display_override": ["window-controls-overlay"],
@@ -45,29 +45,46 @@
     }
   ],
   "features": [
-    "Cross Platform",
-    "fast",
-    "simple"
+    "Read emails",
+    "Compose emails",
+    "Reply to emails",
+    "Archive emails",
+    "PWA support"
   ],
   "categories": [
-    "social"
+    "productivity",
+    "email"
   ],
   "shortcuts": [
     {
-      "name": "Open About",
-      "short_name": "About",
-      "description": "Open the about page",
-      "url": "/about",
+      "name": "Inbox",
+      "short_name": "Inbox",
+      "description": "View your inbox",
+      "url": "/",
+      "icons": [{ "src": "assets/icons/192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Compose",
+      "short_name": "Compose",
+      "description": "Write a new email",
+      "url": "/compose",
+      "icons": [{ "src": "assets/icons/192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Sent",
+      "short_name": "Sent",
+      "description": "View sent emails",
+      "url": "/sent",
       "icons": [{ "src": "assets/icons/192x192.png", "sizes": "192x192" }]
     }
   ],
   "widgets": [
     {
-      "name": "Starter Widget",
-      "tag": "starterWidget",
+      "name": "Email Widget",
+      "tag": "emailWidget",
       "ms_ac_template": "widget/ac.json",
       "data": "widget/data.json",
-      "description": "A simple widget example from pwa-starter.",
+      "description": "Quick view of your latest emails",
       "screenshots": [
         {
           "src": "assets/screenshots/widget-screen.png",
