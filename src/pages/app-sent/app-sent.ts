@@ -3,6 +3,7 @@ import { customElement, state } from 'lit/decorators.js';
 import { EmailService, Email } from '../../services/email-service';
 import { resolveRouterPath } from '../../router';
 import { styles as sharedStyles } from '../../styles/shared-styles';
+import { formatTime, getEmailPreview } from '../../utils/email-utils';
 
 import '@shoelace-style/shoelace/dist/components/card/card.js';
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
@@ -161,26 +162,6 @@ export class AppSent extends LitElement {
     this.emails = EmailService.getSent();
   }
 
-  private formatTime(date: Date): string {
-    const now = new Date();
-    const diff = now.getTime() - date.getTime();
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-    if (days === 0) {
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    } else if (days === 1) {
-      return 'Yesterday';
-    } else if (days < 7) {
-      return date.toLocaleDateString([], { weekday: 'short' });
-    } else {
-      return date.toLocaleDateString([], { month: 'short', day: 'numeric' });
-    }
-  }
-
-  private getPreview(body: string): string {
-    return body.split('\n').filter((line) => line.trim())[0]?.substring(0, 100) || '';
-  }
-
   render() {
     return html`
       <app-header title="CS50 Mail" ?enableBack="${true}"></app-header>
@@ -215,10 +196,10 @@ export class AppSent extends LitElement {
                           <span class="email-to">
                             <span class="email-to-label">To: </span>${email.to}
                           </span>
-                          <span class="email-time">${this.formatTime(email.timestamp)}</span>
+                          <span class="email-time">${formatTime(email.timestamp)}</span>
                         </div>
                         <div class="email-subject">${email.subject}</div>
-                        <div class="email-preview">${this.getPreview(email.body)}</div>
+                        <div class="email-preview">${getEmailPreview(email.body)}</div>
                       </div>
                     </a>
                   `

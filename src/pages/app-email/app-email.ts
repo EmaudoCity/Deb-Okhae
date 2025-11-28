@@ -3,6 +3,7 @@ import { customElement, state, property } from 'lit/decorators.js';
 import { EmailService, Email, currentUser } from '../../services/email-service';
 import { resolveRouterPath, router } from '../../router';
 import { styles as sharedStyles } from '../../styles/shared-styles';
+import { formatFullTimestamp } from '../../utils/email-utils';
 
 import '@shoelace-style/shoelace/dist/components/card/card.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
@@ -162,17 +163,6 @@ export class AppEmail extends LitElement {
     }
   }
 
-  private formatFullTimestamp(date: Date): string {
-    return date.toLocaleDateString([], {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  }
-
   private toggleReply() {
     this.showReply = !this.showReply;
     if (this.showReply) {
@@ -186,12 +176,13 @@ export class AppEmail extends LitElement {
   }
 
   private sendReply() {
-    if (!this.email || !this.replyBody.trim()) return;
+    const email = this.email;
+    if (!email || !this.replyBody.trim()) return;
 
     this.sending = true;
 
     setTimeout(() => {
-      EmailService.replyToEmail(this.email!, this.replyBody);
+      EmailService.replyToEmail(email, this.replyBody);
       this.sending = false;
       this.showReply = false;
       this.replyBody = '';
@@ -200,20 +191,22 @@ export class AppEmail extends LitElement {
   }
 
   private handleArchive() {
-    if (!this.email) return;
+    const email = this.email;
+    if (!email) return;
     
-    if (this.email.archived) {
-      EmailService.unarchiveEmail(this.email.id);
+    if (email.archived) {
+      EmailService.unarchiveEmail(email.id);
       router.navigate(resolveRouterPath());
     } else {
-      EmailService.archiveEmail(this.email.id);
+      EmailService.archiveEmail(email.id);
       router.navigate(resolveRouterPath('archived'));
     }
   }
 
   private handleMarkUnread() {
-    if (!this.email) return;
-    EmailService.markAsUnread(this.email.id);
+    const email = this.email;
+    if (!email) return;
+    EmailService.markAsUnread(email.id);
     router.navigate(resolveRouterPath());
   }
 
@@ -259,7 +252,7 @@ export class AppEmail extends LitElement {
                 <span class="meta-value">${this.email.to}</span>
               </div>
               <div class="email-timestamp">
-                ${this.formatFullTimestamp(this.email.timestamp)}
+                ${formatFullTimestamp(this.email.timestamp)}
               </div>
             </div>
           </div>

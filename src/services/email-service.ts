@@ -14,8 +14,12 @@ export interface Email {
 // Mock user for the application
 export const currentUser = 'user@cs50mail.com';
 
-// Generate unique ID
+// Generate unique ID using crypto API for guaranteed uniqueness
 function generateId(): string {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  // Fallback for environments without crypto.randomUUID
   return Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
 }
 
